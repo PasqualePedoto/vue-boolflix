@@ -63,7 +63,7 @@ export default {
       axios
         .get(this.moviesUri, config)
         .then((res) => {
-          this.TvSeriesResults = res.data.results.map((element) => {
+          this.MovieResults = res.data.results.map((element) => {
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;
