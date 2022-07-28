@@ -1,6 +1,11 @@
 <template>
   <section id="base-card">
     <ul>
+      <li>
+        <figure>
+          <img :src="result.poster_path" :alt="result.poster_path" />
+        </figure>
+      </li>
       <li>Original_Title: {{ result.original_title || result.original_name }}</li>
       <li>Title: {{ result.title || result.name }}</li>
       <li v-if="result.original_language === 'it' || result.original_language === 'en'">

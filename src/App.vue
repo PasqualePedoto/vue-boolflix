@@ -28,6 +28,10 @@ export default {
       query: "",
       api_key: "94e919df475d5245ad0600c98048db21",
 
+      // Start link della foto e dimension
+      initialImageLink: "https://image.tmdb.org/t/p/",
+      imageDimensione: "w342",
+
       // Array che manterranno i risultati della query sia delle serieTV
       // che per quanto riguarda i films
       MovieResults: [],
@@ -59,7 +63,11 @@ export default {
       axios
         .get(this.moviesUri, config)
         .then((res) => {
-          this.MovieResults = res.data.results;
+          this.TvSeriesResults = res.data.results.map((element) => {
+            const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
+            element["poster_path"] = imageLink;
+            return element;
+          });
         })
         .catch((err) => {
           console.err(err);
@@ -69,7 +77,11 @@ export default {
       axios
         .get(this.tvSeriesUri, config)
         .then((res) => {
-          this.TvSeriesResults = res.data.results;
+          this.TvSeriesResults = res.data.results.map((element) => {
+            const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
+            element["poster_path"] = imageLink;
+            return element;
+          });
         })
         .catch((err) => {
           console.err(err);
