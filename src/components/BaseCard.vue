@@ -22,36 +22,22 @@
       </li>
       <li v-else>{{ result.original_language }}</li>
       <!-- Vote -->
-      <li class="d-flex align-items-center">
-        <p>Vote:</p>
-        <div v-if="changeVoteToStars(result.vote_average) === 5">
-          <i class="fa-solid fa-star" v-for="(star, i) in 5" :key="i"></i>
-        </div>
-        <div v-else-if="changeVoteToStars(result.vote_average) === 0">
-          <i class="fa-regular fa-star" v-for="star in 5" :key="star"></i>
-        </div>
-        <div v-else>
-          <i class="fa-solid fa-star" v-for="star in changeVoteToStars(result.vote_average)" :key="star"></i>
-          <i class="fa-regular fa-star" v-for="star in 5 - changeVoteToStars(result.vote_average)" :key="star"></i>
-        </div>
-      </li>
+      <VoteElementInBaseCard :vote="result.vote_average" />
     </ul>
   </section>
 </template>
 
 <script>
+import VoteElementInBaseCard from "./VoteElementInBaseCard.vue";
 export default {
   name: "BaseCard",
+  components: { VoteElementInBaseCard },
   props: {
     result: Object,
   },
   methods: {
     nationFlag(string) {
       return require(`../assets/image/${string}.png`);
-    },
-    changeVoteToStars(vote) {
-      let voto = Math.ceil(vote);
-      return Math.floor(voto / 2);
     },
   },
 };
