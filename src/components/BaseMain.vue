@@ -1,6 +1,7 @@
 <template>
   <main class="container">
-    <ResultsSection :query-results="QueryResults" />
+    <ResultsSection titolo="Movies" :query-results="QueryMoviesResults" />
+    <ResultsSection titolo="Serie Tv" :query-results="QueryTvseriesResults" />
   </main>
 </template>
 
@@ -12,7 +13,8 @@ export default {
     ResultsSection,
   },
   props: {
-    QueryResults: Array,
+    QueryMoviesResults: Array,
+    QueryTvseriesResults: Array,
   },
 };
 </script>

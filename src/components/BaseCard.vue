@@ -1,8 +1,8 @@
 <template>
   <section id="base-card">
     <ul>
-      <li>Original_Title: {{ result.original_title }}</li>
-      <li>Title: {{ result.title }}</li>
+      <li>Original_Title: {{ result.original_title || result.original_name }}</li>
+      <li>Title: {{ result.title || result.name }}</li>
       <li v-if="result.original_language === 'it' || result.original_language === 'en'">
         <div class="d-flex align-items-center">
           <p>Language:</p>

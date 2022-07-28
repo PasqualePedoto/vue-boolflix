@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseHeader @search-query="receiveQuery" />
-    <BaseMain :query-results="theMovieResults" />
+    <BaseMain :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" />
   </div>
 </template>
 
@@ -21,14 +21,17 @@ export default {
       // Definiamo l'Uri base e le specifiche
       baseUri: "https://api.themoviedb.org/3",
       searchMovies: "/search/movie",
+      searchTvSeries: "/search/tv",
 
       // Parametri da passare alla query
       language: "it-IT",
       query: "",
       api_key: "94e919df475d5245ad0600c98048db21",
 
-      //Array che manterrà i risultati della query
-      theMovieResults: [],
+      // Array che manterranno i risultati della query sia delle serieTV
+      // che per quanto riguarda i films
+      MovieResults: [],
+      TvSeriesResults: [],
     };
   },
   computed: {
@@ -36,6 +39,9 @@ export default {
     // delle Uri modificate in funzione di cosa cerchiamo
     moviesUri() {
       return this.baseUri + this.searchMovies;
+    },
+    tvSeriesUri() {
+      return this.baseUri + this.searchTvSeries;
     },
   },
   methods: {
@@ -49,11 +55,21 @@ export default {
           language: this.language,
         },
       };
-
+      // Chiamata atta a prelevare i films
       axios
         .get(this.moviesUri, config)
         .then((res) => {
-          this.theMovieResults = res.data.results;
+          this.MovieResults = res.data.results;
+        })
+        .catch((err) => {
+          console.err(err);
+        });
+
+      // Chiamata atta a prelevare serie tv
+      axios
+        .get(this.tvSeriesUri, config)
+        .then((res) => {
+          this.TvSeriesResults = res.data.results;
         })
         .catch((err) => {
           console.err(err);

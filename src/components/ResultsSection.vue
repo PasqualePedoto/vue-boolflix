@@ -1,5 +1,6 @@
 <template>
-  <section id="movies-section">
+  <section id="results-section">
+    <h2>{{ titolo }}</h2>
     <ul>
       <li v-for="(result, index) in QueryResults" :key="index">
         <BaseCard :result="result" />
@@ -11,9 +12,10 @@
 <script>
 import BaseCard from "./BaseCard.vue";
 export default {
-  name: "MoviesSection",
+  name: "ResultsSection",
   props: {
     QueryResults: Array,
+    titolo: String,
   },
   components: { BaseCard },
 };
