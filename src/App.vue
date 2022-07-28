@@ -1,12 +1,22 @@
 <template>
-  <div id="app"></div>
+  <div></div>
 </template>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: "App",
   components: {},
+  data() {
+    return {
+      TheMovieResults: [],
+    };
+  },
+  methods: {},
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "~bootstrap/scss/bootstrap";
+</style>
