@@ -1,13 +1,18 @@
 <template>
-  <div></div>
+  <div>
+    <BaseHeader />
+  </div>
 </template>
 
 <script>
+import BaseHeader from "./components/BaseHeader.vue";
 // import axios from "axios";
 
 export default {
   name: "App",
-  components: {},
+  components: {
+    BaseHeader,
+  },
   data() {
     return {
       TheMovieResults: [],
