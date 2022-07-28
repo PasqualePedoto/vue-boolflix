@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseHeader />
+    <BaseHeader @search-query="receiveQuery" />
     <BaseMain :query-results="theMovieResults" />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 
       // Parametri da passare alla query
       language: "it-IT",
-      query: "anelli",
+      query: "",
       api_key: "94e919df475d5245ad0600c98048db21",
 
       //Array che manterrà i risultati della query
@@ -59,10 +59,12 @@ export default {
           console.err(err);
         });
     },
+    receiveQuery(query) {
+      this.query = query;
+      this.getMoviesFromTheMovieDB();
+    },
   },
-  mounted() {
-    this.getMoviesFromTheMovieDB();
-  },
+  mounted() {},
 };
 </script>
 
