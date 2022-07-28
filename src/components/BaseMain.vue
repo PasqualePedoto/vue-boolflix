@@ -1,15 +1,15 @@
 <template>
   <main class="container">
-    <MoviesSection :query-results="QueryResults" />
+    <ResultsSection :query-results="QueryResults" />
   </main>
 </template>
 
 <script>
-import MoviesSection from "./MoviesSection.vue";
+import ResultsSection from "./ResultsSection.vue";
 export default {
   name: "BaseMain",
   components: {
-    MoviesSection,
+    ResultsSection,
   },
   props: {
     QueryResults: Array,
