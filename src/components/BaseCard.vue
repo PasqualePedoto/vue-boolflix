@@ -74,9 +74,13 @@ export default {
 // ------------------------------------------------------------
 
 #features-movies-series {
-  // Diamo una width e heigth fissa facendo riferimento alla width di 342px
+  // Diamo una max-width e heigth fissa facendo riferimento alla width di 342px
   // consigliata per la dimensione dell'immagine del film o serie tv
-  width: 342px;
+
+  // ---------------------------------------------------------------
+  // Diamo una max-width anzichè una width per questioni di response
+  // ---------------------------------------------------------------
+  max-width: 342px;
   height: 660px;
 
   // Diamo il display flex in modo tale da mantenere omogenee le dimensioni
