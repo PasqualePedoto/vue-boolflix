@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column">
     <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" />
-    <BaseMain :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" class="flex-grow-1 align-items-stretch" />
+    <BaseMain :query-value="query" :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" class="flex-grow-1 align-items-stretch" />
   </div>
 </template>
 
@@ -97,20 +97,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/bootstrap";
-// Generics
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: 100%;
-}
+@import "./assets/scss/style.scss";
 
 #app {
   min-height: 100vh;
