@@ -1,6 +1,6 @@
 <template>
-  <li class="d-flex align-items-center">
-    <p class="m-0">Vote:</p>
+  <li class="d-flex align-items-center desc">
+    <p class="m-0 me-2">Vote:</p>
     <div v-if="changeVoteToStars(vote) === 5">
       <i class="fa-solid fa-star" v-for="(star, i) in 5" :key="i"></i>
     </div>
@@ -28,4 +28,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// Ogni descrizione ha un pò d'aria
+.desc {
+  padding: 5px 10px;
+
+  p {
+    font-weight: bold;
+  }
+}
+</style>

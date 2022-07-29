@@ -21,4 +21,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ul {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(100% / 3 - 10px);
+  }
+}
+</style>

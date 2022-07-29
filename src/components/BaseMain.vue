@@ -1,7 +1,13 @@
 <template>
-  <main class="container">
-    <ResultsSection titolo="Movies" :query-results="QueryMoviesResults" />
-    <ResultsSection titolo="Serie Tv" :query-results="QueryTvseriesResults" />
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <ResultsSection titolo="Movies" :query-results="QueryMoviesResults" />
+          <ResultsSection titolo="Serie Tv" :query-results="QueryTvseriesResults" />
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -19,4 +25,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+main {
+  background-color: #434343;
+  height: 100%;
+}
+</style>

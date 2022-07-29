@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="d-flex align-items-center justify-content-between">
-            <a href="#"><h1>Boolfix</h1></a>
+          <div class="m-2 d-flex align-items-center justify-content-between">
+            <a href="#"><h1 class="m-0">Boolfix</h1></a>
             <BaseSearchBar @search-query="emitQuery" />
           </div>
         </div>
@@ -32,7 +32,6 @@ header {
 
   a {
     color: red;
-    margin: 10px;
 
     h1 {
       font-weight: bold;

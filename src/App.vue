@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <BaseHeader @search-query="receiveQuery" />
-    <BaseMain :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" />
+  <div id="app" class="d-flex flex-column">
+    <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" />
+    <BaseMain :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" class="flex-grow-1 align-items-stretch" />
   </div>
 </template>
 
@@ -105,5 +105,14 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+}
+
+#app {
+  min-height: 100vh;
 }
 </style>
