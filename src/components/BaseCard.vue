@@ -4,7 +4,12 @@
       <!-- Image -->
       <li class="img-height flex-shrink-0">
         <figure class="h-100 m-0">
-          <img :src="result.poster_path" :alt="result.poster_path" />
+          <img v-if="result.poster_path !== 'https://image.tmdb.org/t/p/w342null'" :src="result.poster_path" :alt="result.poster_path" />
+          <img
+            v-else
+            src="https://img.pixers.pics/prd_pho(cms:2019/02/5c6ac1e63265e_dr-czarna-40x30-nowycien.png,400,302,s3:400/FO/59/47/47/91/400_FO59474791_a1dfd092f58a037e9ed227119296e100.jpg,367,297,dst_over,11,3,jpg)/poster-in-cornice-grunge-graffiato-striscia-di-pellicola-sporca-bobina-fondo.jpg.jpg"
+            alt="not-image"
+          />
         </figure>
       </li>
       <li class="h-100">
@@ -49,6 +54,11 @@ export default {
   components: { VoteElementInBaseCard },
   props: {
     result: Object,
+  },
+  data() {
+    return {
+      notImage: "https://www.scelgonews.it/cinema-cosa-ce-di-nuovo/pellicola-cinema/",
+    };
   },
   methods: {
     nationFlag(string) {
