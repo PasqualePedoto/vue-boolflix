@@ -98,4 +98,12 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
+// Generics
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
 </style>

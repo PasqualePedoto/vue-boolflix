@@ -1,6 +1,6 @@
 <template>
   <li class="d-flex align-items-center">
-    <p>Vote:</p>
+    <p class="m-0">Vote:</p>
     <div v-if="changeVoteToStars(vote) === 5">
       <i class="fa-solid fa-star" v-for="(star, i) in 5" :key="i"></i>
     </div>
@@ -22,8 +22,7 @@ export default {
   },
   methods: {
     changeVoteToStars(vote) {
-      let voto = Math.ceil(vote);
-      return Math.floor(voto / 2);
+      return Math.floor(Math.ceil(vote) / 2);
     },
   },
 };
