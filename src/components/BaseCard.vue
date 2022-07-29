@@ -1,8 +1,8 @@
 <template>
   <section id="base-card">
-    <ul id="features-movies-series">
+    <div id="features-movies-series">
       <!-- Image -->
-      <li class="img-height flex-shrink-0">
+      <div class="img-height h-100" id="movies-seriestv-bg">
         <figure class="h-100 m-0">
           <img v-if="result.poster_path !== 'https://image.tmdb.org/t/p/w342null'" :src="result.poster_path" :alt="result.poster_path" />
           <img
@@ -11,9 +11,9 @@
             alt="not-image"
           />
         </figure>
-      </li>
-      <li class="h-100">
-        <ul class="m-0 p-0" id="info-movies-series">
+      </div>
+      <div class="img-height h-100" id="info">
+        <ul class="m-0 p-0 h-100" id="info-movies-series">
           <!-- Original Title -->
           <li class="desc mt-2">
             <p class="m-0 me-2 fw-bold">Original_Title:</p>
@@ -42,8 +42,8 @@
           <!-- Vote -->
           <VoteElementInBaseCard :vote="result.vote_average" />
         </ul>
-      </li>
-    </ul>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -81,12 +81,13 @@ export default {
   // Diamo una max-width anzichè una width per questioni di response
   // ---------------------------------------------------------------
   max-width: 342px;
-  height: 660px;
+  height: 500px;
+  cursor: pointer;
 
   // Diamo il display flex in modo tale da mantenere omogenee le dimensioni
   // della foto e della descrizione per ogni film o serie tv
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
 
   // Tutto centrato
   text-align: center;
@@ -100,20 +101,8 @@ export default {
   color: white;
   font-size: 12px;
 
-  // Fissiamo l'height dell'immagine
-  .img-height {
-    height: 500px;
-  }
-
-  // ------------------------------------------------------------
-  // Questi sono i singoli films/serie tv
-  // ------------------------------------------------------------
-
-  li {
-    display: flex;
-    justify-content: center;
-
-    // height: 20px;
+  #info {
+    display: none;
 
     // ------------------------------------------------------------
     // Questa è la lista delle 4 descrizioni del film/serietv
@@ -121,6 +110,8 @@ export default {
     #info-movies-series {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       // Col flex-grow-1 facciamo in modo tale che prendi tutto lo spazio
       // disponibile
@@ -128,8 +119,8 @@ export default {
 
       // Essendo 4 elementi descrittivi dividiamo lo spazio disponibile per 4
       li {
-        height: 25%;
         align-items: stretch;
+        color: white;
       }
     }
   }
@@ -148,5 +139,14 @@ export default {
       height: 30px;
     }
   }
+}
+
+// Effetto di Hover che permette di visualizzare le info dei films e serie tv
+#features-movies-series:hover #movies-seriestv-bg {
+  display: none;
+}
+
+#features-movies-series:hover #info {
+  display: block;
 }
 </style>

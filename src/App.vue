@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column">
     <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" />
-    <BaseMain :query-value="query" :query-movies-results="MovieResults" :query-tvseries-results="TvSeriesResults" class="flex-grow-1 align-items-stretch" />
+    <BaseMain :query-value="query" :query-movies-results="movieResults" :query-tvseries-results="tvSeriesResults" class="flex-grow-1 align-items-stretch" />
   </div>
 </template>
 
@@ -34,8 +34,8 @@ export default {
 
       // Array che manterranno i risultati della query sia delle serieTV
       // che per quanto riguarda i films
-      MovieResults: [],
-      TvSeriesResults: [],
+      movieResults: [],
+      tvSeriesResults: [],
     };
   },
   computed: {
@@ -63,7 +63,7 @@ export default {
       axios
         .get(this.moviesUri, config)
         .then((res) => {
-          this.MovieResults = res.data.results.map((element) => {
+          this.movieResults = res.data.results.map((element) => {
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;
@@ -77,7 +77,7 @@ export default {
       axios
         .get(this.tvSeriesUri, config)
         .then((res) => {
-          this.TvSeriesResults = res.data.results.map((element) => {
+          this.tvSeriesResults = res.data.results.map((element) => {
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;

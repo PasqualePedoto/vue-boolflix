@@ -1,8 +1,8 @@
 <template>
   <section id="results-section">
-    <h2>{{ titolo }}</h2>
+    <h2 class="text-white">{{ titolo }}</h2>
     <ul>
-      <li v-for="(result, index) in QueryResults" :key="index">
+      <li v-for="(result, index) in queryResults" :key="index">
         <BaseCard :result="result" />
       </li>
     </ul>
@@ -14,7 +14,7 @@ import BaseCard from "./BaseCard.vue";
 export default {
   name: "ResultsSection",
   props: {
-    QueryResults: Array,
+    queryResults: Array,
     titolo: String,
   },
   components: { BaseCard },
