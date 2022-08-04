@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="d-flex flex-column">
-    <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" />
+    <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" :genres="genres" />
     <BaseMain :query-value="query" :query-movies-results="movieResults" :query-tvseries-results="tvSeriesResults" class="flex-grow-1 align-items-stretch" />
   </div>
 </template>
