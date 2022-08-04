@@ -22,6 +22,7 @@ export default {
       baseUri: "https://api.themoviedb.org/3",
       searchMovies: "/search/movie",
       searchTvSeries: "/search/tv",
+      searchGenres: "/genre/movie/list",
 
       // Parametri da passare alla query
       language: "it-IT",
@@ -33,9 +34,10 @@ export default {
       imageDimensione: "w342",
 
       // Array che manterranno i risultati della query sia delle serieTV
-      // che per quanto riguarda i films
+      // che per quanto riguarda i films e i generi
       movieResults: [],
       tvSeriesResults: [],
+      genres: [],
     };
   },
   computed: {
@@ -46,6 +48,9 @@ export default {
     },
     tvSeriesUri() {
       return this.baseUri + this.searchTvSeries;
+    },
+    genresUri() {
+      return this.baseUri + this.searchGenres;
     },
   },
   methods: {
@@ -87,12 +92,34 @@ export default {
           console.err(err);
         });
     },
+
+    // Funzione eseguita al momento dell'arrivo della query
     receiveQuery(query) {
       this.query = query;
       this.getMoviesFromTheMovieDB();
     },
+    getGenres() {
+      const genresConfig = {
+        params: {
+          api_key: this.api_key,
+          language: this.language,
+        },
+      };
+      // Chiamata atta a prelevare i generi
+      axios
+        .get(this.genresUri, genresConfig)
+        .then((res) => {
+          this.genres = res.data.genres;
+          console.log(this.genres);
+        })
+        .catch((err) => {
+          console.err(err);
+        });
+    },
   },
-  mounted() {},
+  mounted() {
+    this.getGenres();
+  },
 };
 </script>
 
