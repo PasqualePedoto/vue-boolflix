@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    // La computed qui definita tiene traccia
+    // Le computed qui definite tengono traccia
     // delle Uri modificate in funzione di cosa cerchiamo
     moviesUri() {
       return this.baseUri + this.searchMovies;
@@ -54,6 +54,8 @@ export default {
     },
   },
   methods: {
+    // Questa è la funzione che viene invocata al momento del search di
+    // un film o di una serie tv
     getMoviesFromTheMovieDB() {
       // Definiamo un set di parametri da passare alla
       // chiamata verso l'API
