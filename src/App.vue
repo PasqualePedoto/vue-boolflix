@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column">
     <BaseHeader @search-query="receiveQuery" class="flex-shrink-0" :genres="genres" />
-    <BaseMain :query-value="query" :query-movies-results="movieResults" :query-tvseries-results="tvSeriesResults" class="flex-grow-1 align-items-stretch" />
+    <BaseMain :query-value="query" :query-movies-results="moviesResults" :query-tvseries-results="tvSeriesResults" class="flex-grow-1 align-items-stretch" />
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 
       // Array che manterranno i risultati della query sia delle serieTV
       // che per quanto riguarda i films e i generi
-      movieResults: [],
+      moviesResults: [],
       tvSeriesResults: [],
       genres: [],
 
@@ -60,7 +60,7 @@ export default {
   methods: {
     // Questa è la funzione che viene invocata al momento del search di
     // un film o di una serie tv
-    getMoviesFromTheMovieDB() {
+    startSearch() {
       // Definiamo un set di parametri da passare alla
       // chiamata verso l'API
       const config = {
@@ -71,42 +71,28 @@ export default {
         },
       };
       // Chiamata atta a prelevare i films
-      axios
-        .get(this.moviesUri, config)
-        .then((res) => {
-          // Azzero l'array degli ID dei films ad ogni chiamata
-          this.allFilmsId = [];
-
-          this.movieResults = res.data.results.map((element) => {
-            // Prelevo l'ID del film e lo pusho in un array per tenerne traccia
-            this.allFilmsId.push(element.id);
-
-            const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
-            element["poster_path"] = imageLink;
-            return element;
-          });
-          console.log("Films: " + this.allFilmsId.length);
-        })
-        .catch((err) => {
-          console.err(err);
-        });
+      this.fetchData(this.searchMovies, config, "moviesResults", "allFilmsId");
 
       // Chiamata atta a prelevare serie tv
-      axios
-        .get(this.tvSeriesUri, config)
-        .then((res) => {
-          // Azzero gli ID delle serie TV ad ogni chiamata
-          this.allSeriesId = [];
+      this.fetchData(this.searchTvSeries, config, "tvSeriesResults", "allSeriesId");
+    },
 
-          this.tvSeriesResults = res.data.results.map((element) => {
+    fetchData(endpoint, config, targetResults, targetId) {
+      axios
+        .get(`${this.baseUri}${endpoint}`, config)
+        .then((res) => {
+          // Azzero gli ID delle serie ad ogni chiamata
+          this[targetId] = [];
+
+          this[targetResults] = res.data.results.map((element) => {
             // Prelevo l'ID della serie Tv e lo pusho in un array per tenerne traccia
-            this.allSeriesId.push(element.id);
+            this[targetId].push(element.id);
 
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;
           });
-          console.log("Series: " + this.allSeriesId.length);
+          console.log(this[targetResults]);
         })
         .catch((err) => {
           console.err(err);
@@ -116,7 +102,7 @@ export default {
     // Funzione eseguita al momento dell'arrivo della query
     receiveQuery(query) {
       this.query = query;
-      this.getMoviesFromTheMovieDB();
+      this.startSearch();
     },
     getGenres() {
       const genresConfig = {
