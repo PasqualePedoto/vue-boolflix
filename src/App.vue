@@ -38,6 +38,10 @@ export default {
       movieResults: [],
       tvSeriesResults: [],
       genres: [],
+
+      // Array degli id
+      allFilmsId: [],
+      allSeriesId: [],
     };
   },
   computed: {
@@ -70,11 +74,18 @@ export default {
       axios
         .get(this.moviesUri, config)
         .then((res) => {
+          // Azzero l'array degli ID dei films ad ogni chiamata
+          this.allFilmsId = [];
+
           this.movieResults = res.data.results.map((element) => {
+            // Prelevo l'ID del film e lo pusho in un array per tenerne traccia
+            this.allFilmsId.push(element.id);
+
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;
           });
+          console.log("Films: " + this.allFilmsId.length);
         })
         .catch((err) => {
           console.err(err);
@@ -84,11 +95,18 @@ export default {
       axios
         .get(this.tvSeriesUri, config)
         .then((res) => {
+          // Azzero gli ID delle serie TV ad ogni chiamata
+          this.allSeriesId = [];
+
           this.tvSeriesResults = res.data.results.map((element) => {
+            // Prelevo l'ID della serie Tv e lo pusho in un array per tenerne traccia
+            this.allSeriesId.push(element.id);
+
             const imageLink = this.initialImageLink + this.imageDimensione + element["poster_path"];
             element["poster_path"] = imageLink;
             return element;
           });
+          console.log("Series: " + this.allSeriesId.length);
         })
         .catch((err) => {
           console.err(err);
