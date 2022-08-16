@@ -1,6 +1,6 @@
 <template>
   <section id="results-section">
-    <h2 class="text-white">{{ titolo }}</h2>
+    <h2 class="text-white" v-if="queryResults.length != 0">{{ titolo }}</h2>
     <ul>
       <li v-for="(result, index) in queryResults" :key="index">
         <BaseCard :result="result" />
