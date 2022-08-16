@@ -7,7 +7,6 @@
             <a href="#"><h1 class="m-0">Boolfix</h1></a>
             <div class="d-flex align-items-center justify-content-center">
               <BaseSearchBar @search-query="emitQuery" />
-              <BaseSelect :genres="genres" class="ms-3" />
             </div>
           </div>
         </div>
@@ -18,13 +17,10 @@
 
 <script>
 import BaseSearchBar from "./BaseSearchBar.vue";
-import BaseSelect from "./BaseSelect.vue";
+
 export default {
   name: "BaseHeader",
-  components: { BaseSearchBar, BaseSelect },
-  props: {
-    genres: Array,
-  },
+  components: { BaseSearchBar },
   methods: {
     emitQuery(query) {
       this.$emit("search-query", query);
