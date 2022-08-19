@@ -6,6 +6,7 @@
         <BaseCard :result="result" />
       </li>
     </ul>
+    <div v-if="queryResults.length === 0" class="text-white">Non sono stati prodotti risultati per {{ titolo }}</div>
   </section>
 </template>
 
