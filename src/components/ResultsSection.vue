@@ -1,12 +1,12 @@
 <template>
   <section id="results-section">
-    <h2 class="text-white" v-if="queryResults.length != 0">{{ titolo }}</h2>
+    <div class="text-white h2" v-if="queryResults.length != 0">{{ titolo }}</div>
+    <div v-else class="h2 text-white">Non sono stati prodotti risultati per {{ titolo }}</div>
     <ul>
       <li v-for="(result, index) in queryResults" :key="index">
         <BaseCard :result="result" />
       </li>
     </ul>
-    <div v-if="queryResults.length === 0" class="text-white">Non sono stati prodotti risultati per {{ titolo }}</div>
   </section>
 </template>
 
